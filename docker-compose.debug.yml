@@ -1,0 +1,10 @@
+version: '3.4'
+
+services:
+  consoleapp:
+    image: consoleapp
+    build:
+      context: .
+      dockerfile: ConsoleApp/Dockerfile
+    volumes:
+      - ~/.vsdbg:/remote_debugger:rw
