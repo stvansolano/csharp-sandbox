@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace CSharp8examples
+namespace CSharp8Examples
 {
-    class Program
+    partial class Program
     {
         static void Main(string[] args)
         {
