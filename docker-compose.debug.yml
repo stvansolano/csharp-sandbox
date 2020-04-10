@@ -13,6 +13,7 @@ services:
     ports: 
       - 5000:5000
       - 5001:5001
+      - 8080:8080
 
   adventure-works.db:
     image: stvansolano/adventure-works-sql-server:latest

@@ -13,6 +13,7 @@ namespace AdventureWorks.Api
     {
         public static void Main(string[] args)
         {
+            Console.WriteLine($"Hello World! NET {Environment.Version.ToString()}");
             CreateHostBuilder(args).Build().Run();
         }
 
@@ -20,7 +21,8 @@ namespace AdventureWorks.Api
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>();
+                    webBuilder.UseStartup<Startup>()
+                              .UseUrls("http://+:8080;https://+:8000");
                 });
     }
 }
