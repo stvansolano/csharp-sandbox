@@ -1,10 +1,24 @@
 version: '3.4'
 
 services:
-  consoleapp:
-    image: consoleapp
+  development:
+    image: net5-development
     build:
       context: .
-      dockerfile: ConsoleApp/Dockerfile
+      dockerfile: .devcontainer/Debug.Dockerfile
     volumes:
       - ~/.vsdbg:/remote_debugger:rw
+    depends_on: 
+      - adventure-works.db
+    ports: 
+      - 5000:5000
+      - 5001:5001
+
+  adventure-works.db:
+    image: stvansolano/adventure-works-sql-server:latest
+    container_name: adventure-works.db
+    environment:
+      SA_PASSWORD: "Password.123"
+      ACCEPT_EULA: "Y"
+    ports: 
+      - 1433:1433

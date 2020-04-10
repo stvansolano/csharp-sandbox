@@ -1,10 +1,12 @@
 // For format details, see https://aka.ms/vscode-remote/devcontainer.json or this file's README at:
-// https://github.com/microsoft/vscode-dev-containers/tree/v0.106.0/containers/docker-existing-docker-compose
-// If you want to run as a non-root user in the container, see .devcontainer/docker-compose.yml.
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.106.0/containers/azure-functions-dotnetcore-3.1
 {
-	"name": "Existing Docker Compose (Extend)",
+	"name": "C# & .NET 5.x (preview)",
+	
+	//"dockerfile": "Debug.Dockerfile",
+	//"forwardPorts": [ 7071, 5000, 5001 ],
 
-	// Update the 'dockerComposeFile' list if you have more compose files or use different names.
+		// Update the 'dockerComposeFile' list if you have more compose files or use different names.
 	// The .devcontainer/docker-compose.yml file contains any overrides you need/want to make.
 	"dockerComposeFile": [
 		"../docker-compose.debug.yml",
@@ -15,13 +17,9 @@
 	// use. Update this value and .devcontainer/docker-compose.yml to the real service name.
 	"service": "development",
 
-	// The optional 'workspaceFolder' property is the path VS Code should open by default when
-	// connected. This is typically a file mount in .devcontainer/docker-compose.yml
-	"workspaceFolder": "/workspace",
-
 	// Set *default* container specific settings.json values on container create.
 	"settings": { 
-		"terminal.integrated.shell.linux": null
+		"terminal.integrated.shell.linux": "/bin/bash"
 	},
 
 	// Add the IDs of extensions you want installed when the container is created.
@@ -43,15 +41,11 @@
 		// Others
 		"johnpapa.vscode-peacock"
 	]
-	// Uncomment the next line if you want start specific services in your Docker Compose config.
-	// "runServices": [],
 
-	// Uncomment the next line if you want to keep your containers running after VS Code shuts down.
-	// "shutdownAction": "none",
-
-	// Uncomment the next line to run commands after the container is created - for example installing git.
-	// "postCreateCommand": "apt-get update && apt-get install -y git",
+	// Use 'postCreateCommand' to run commands after the container is created.
+	// "postCreateCommand": "dotnet restore",
 
 	// Uncomment to connect as a non-root user. See https://aka.ms/vscode-remote/containers/non-root.
 	// "remoteUser": "vscode"
+
 }
