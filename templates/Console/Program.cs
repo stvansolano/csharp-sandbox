@@ -6,7 +6,7 @@ namespace ConsoleApp
     {
         static void Main(string[] args)
         {
-            Console.WriteLine($"Hello World! NET Core {Environment.Version.ToString()}");
+            Console.WriteLine($"Hello World! NET {Environment.Version.ToString()}");
         }
     }
 }

@@ -32,7 +32,7 @@ namespace AspnetCoreSample
             {
                 endpoints.MapGet("/", async context =>
                 {
-                    await context.Response.WriteAsync($"Hello World!{Environment.Version.ToString()}");
+                    await context.Response.WriteAsync($"Hello World! NET {Environment.Version.ToString()}");
                 });
             });
         }
