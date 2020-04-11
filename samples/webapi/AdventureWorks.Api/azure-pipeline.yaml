@@ -4,16 +4,16 @@
 
 trigger:
 - master
+- develop
 
 resources:
 - repo: self
 
 variables:
   # Container registry service connection established during pipeline creation
-  dockerRegistryServiceConnection: '06685328-1509-4d6b-b1b6-3e764c1e57d1'
-  imageRepository: 'stvansolanoxamarinexplorer'
+  dockerRegistryServiceConnection: '$(acr-service-connection)'
   containerRegistry: 'mydemos.azurecr.io'
-  dockerfilePath: '$(Build.SourcesDirectory)/Server/MyWebAPI/Dockerfile'
+  dockerfilePath: '$(Build.SourcesDirectory)/samples/webapi/AdventureWorks.Api/Dockerfile'
   tag: '$(Build.BuildId)'
   
   # Agent VM image name
@@ -32,7 +32,7 @@ stages:
       displayName: Build the image
       inputs:
         command: build
-        dockerfile: '$(Build.SourcesDirectory)/Server/MyWebAPI/Dockerfile'
+        dockerfile: $(dockerfilePath)
         buildContext: '.'
         tags: |
           $(tag)
@@ -40,8 +40,9 @@ stages:
       displayName: Push an image to container registry
       inputs:
         command: push
-        repository: $(imageRepository)
+        repository: $(repositoryName)
         dockerfile: $(dockerfilePath)
+        buildContext: '.'
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
