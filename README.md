@@ -1,28 +1,53 @@
 
+# C# Sandbox
+
+[Twitter: @stvansolano](https://twitter.com/stvansolano)
+
+Repo: https://github.com/stvansolano/csharp-sandbox/
+
+## Getting started:
+
+    git clone https://github.com/stvansolano/csharp-sandbox.git
+    cd csharp-sandbox
+
+## Creating a test console 
 
 ```
 dotnet --version
 dotnet new console --name ConsoleApp
 ```
-Then 
-```
-docker build --rm -f "ConsoleApp/Dockerfile" -t "netcore-preview:netcore3" .
-```
-and
-```
-docker run --rm netcore-preview:netcore3
-```
 
-## Recommended (before start)
+No .NET installed? Got Docker? Run it as a remote container!
+
+1) Install [VS Code](https://code.visualstudio.com/) or [VS Code Insiders] and the [Remote Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers).
+2) Install and configure Docker for your operating system.
+3) Open the cloned project with VSCode and switch to the remote container!
+
+Alternatively, if you want to run .NET in Docker
+
+    cd `templates/ConsoleApp`
+    docker build --rm -f "ConsoleApp/Dockerfile" -t "netcore-preview:netcore3" .
+
+and
+
+    docker run --rm netcore-preview:netcore3
+
+## What's new in C# 8?
+
+English: [samples/CSharp8-Examples/What-is-new-in-CSharp8.en.md](https://docs.microsoft.com/en-US/dotnet/csharp/whats-new/csharp-8)
+
+Spanish: [samples/CSharp8-Examples/What-is-new-in-CSharp8.es.md](./samples/CSharp8-Examples/What-is-new-in-CSharp8.es.md)
+
+## Recommended (before coding)
 
     export PATH="$PATH:/root/.dotnet/tools"
 
-## Scaffolding:
+## Scaffolding a project:
 
-`dotnet new mvc --name AspnetCore`
-`dotnet watch run`
+    dotnet new mvc --name AspnetCore`
+    dotnet run
 
-## Extra templates:
+## Get some extra templates/tooling:
 
 ### Blazor Web Assembly!
 [Install Blazor Web Assembly Template](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Templates/)
@@ -40,7 +65,6 @@ or
 Then
 
     dotnet-ef --help
-
 
 Ready! 🎉🦄
 ```
