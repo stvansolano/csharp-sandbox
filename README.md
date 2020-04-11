@@ -5,6 +5,10 @@
 
 Repo: https://github.com/stvansolano/csharp-sandbox/
 
+## Do you like it? Give a Star! :star:
+
+If you like or are using this project to learn or start your own solution, please give it a star. I appreciate it!
+
 ## Getting started:
 
     git clone https://github.com/stvansolano/csharp-sandbox.git
