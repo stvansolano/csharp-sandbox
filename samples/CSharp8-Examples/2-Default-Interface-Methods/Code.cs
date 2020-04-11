@@ -14,7 +14,7 @@ namespace CSharp8Examples
         string Name { get; }
         IDictionary<DateTime, string> Reminders { get; }
         
-        public static void SetLoyaltyThresholds(
+        private static void SetLoyaltyThresholds(
             TimeSpan ago, 
             int minimumOrders = 10, 
             decimal percentageDiscount = 0.10m)

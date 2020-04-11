@@ -38,10 +38,7 @@
 		"formulahendry.dotnet-test-explorer",
 
 		// ASP.NET
-		"austincummings.razor-plus",
-
-		// Others
-		"johnpapa.vscode-peacock"
+		"austincummings.razor-plus"
 	],
 	// Uncomment the next line if you want start specific services in your Docker Compose config.
 	// "runServices": [],

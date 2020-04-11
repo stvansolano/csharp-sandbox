@@ -2,7 +2,7 @@ namespace CSharp8Examples
 {
     partial class Code
     {
-        int M()
+        static int M()
         {
             int y = 5;
             int x = 7;

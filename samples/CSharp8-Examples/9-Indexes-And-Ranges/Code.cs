@@ -23,7 +23,7 @@ namespace CSharp8Examples
             // dog
             Console.WriteLine($"The last word is {words[^1]}");
 
-            Console.WriteLine($"Last 3 words are {String.Join(",", words[5..9])}");
+            Console.WriteLine($"Last 4 words are {String.Join(",", words[5..9])}");
 
             var lazyDog = words[^2..^0];
 
