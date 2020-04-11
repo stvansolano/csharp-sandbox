@@ -60,6 +60,11 @@ Add EF Core 5.x to a `classlib`
 dotnet ef dbcontext scaffold "<CONNECTION_STRING_HERE>" Microsoft.EntityFrameworkCore.SqlServer -o Models
 ```
 
+## Useful development links:
+
+- https://docs.microsoft.com/en-us/aspnet/core/tutorials/getting-started-with-swashbuckle?view=aspnetcore-3.1&tabs=netcore-cli
+- https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-add-reference
+
 ## Other Links
 
 - https://try.dot.net/
