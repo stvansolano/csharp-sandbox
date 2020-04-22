@@ -1,8 +1,12 @@
-name: Build Docker Image CI
+name: Build and Push Docker Image CI
 
 on:
   push:
     branches: [ master ]
+    paths:
+    - 'samples/efcore5'
+    - 'samples/webapi'
+
   pull_request:
     branches: [ master ]
 
@@ -15,4 +19,9 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build the Docker image
-      run: docker build . --file samples/webapi/AdventureWorks.Api/Dockerfile --tag adventure-works-api-net5:$(date +%s)
+      run: |
+        docker login --username stvansolano --password ${{ secrets.DOCKERHUB_ACCESS_TOKEN }}
+        version=$(date +%s)
+        docker build . --file samples/webapi/AdventureWorks.Api/Dockerfile --tag adventure-works-api:$version
+        echo $version
+        docker push stvansolano/adventure-works-api:$version
