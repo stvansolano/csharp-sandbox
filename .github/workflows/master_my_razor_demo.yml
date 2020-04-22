@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy ASP.Net Core app to Azure Web App - myblazordemo
+name: Razor Demo - Build and deploy ASP.Net Core app 
 
 on:
   push:
@@ -29,7 +29,7 @@ jobs:
     - name: Deploy to Azure Web App
       uses: azure/webapps-deploy@v1
       with:
-        app-name: 'myblazordemo'
-        slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_051dbe24d29445fa92612f3e1311dc7d }}
+        app-name: 'my-razor-demo'
+        slot-name: 'qa'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_my_razor_demo }}
         package: ${{env.DOTNET_ROOT}}/myapp 
