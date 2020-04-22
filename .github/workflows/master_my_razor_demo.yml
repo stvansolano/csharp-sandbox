@@ -7,7 +7,8 @@ on:
   push:
     branches:
       - master
-
+    paths:
+    - 'templates/RazorWebApp'
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
