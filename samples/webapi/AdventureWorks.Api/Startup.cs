@@ -56,7 +56,7 @@ namespace AdventureWorks.Api
             }
             else 
             {
-                app.UseHttpsRedirection();
+                //app.UseHttpsRedirection();
             }
 
             app.UseRouting();
