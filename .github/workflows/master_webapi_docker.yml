@@ -26,3 +26,26 @@ jobs:
         docker build . --file samples/webapi/AdventureWorks.Api/Dockerfile --tag $tag
         echo $version
         docker push $tag
+
+    - name: ACR build
+      uses: ams0/acr-task-github-action@v1
+      with:
+        service_principal: ${{ secrets.ACR_SERVICE_PRINCIPAL }}
+        service_principal_password: ${{ secrets.ACR_SERVICE_PRINCIPAL_PASSWORD }}
+        tenant: ${{ secrets.ACR_TENANT }}
+        registry: ${{ secrets.ACR_REGISTRY }}
+        repository: ${{ secrets.ACR_REPOSITORY }}
+        image: adventure-works-api-net5
+        folder: .
+        dockerfile: samples/webapi/AdventureWorks.Api/Dockerfile
+
+# c
+# az ad sp create-for-rbac --name "myApp" --role contributor --scopes /subscriptions/{SUBSCRIPTION-ID}/resourceGroups/{RESOURCE-GROUP} --sdk-auth
+# az role assignment create --assignee <spID> --scope <resourceID of the ACR> --role "Contributor"
+
+# {
+#   "clientId": "ID-HERE",
+#   "clientSecret": "SECRET-HERE",
+#   "tenantId": "TENANT-ID",
+#   ...
+# }
