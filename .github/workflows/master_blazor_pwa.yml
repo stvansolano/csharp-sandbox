@@ -1,0 +1,32 @@
+name: Publish To Azure Storage
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+    - '.github/workflows/master_blazor_pwa.yml'
+    - 'samples/BlazorWebAssembly/**'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+
+    - name: Set up .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '3.1.102'
+
+    - name: Build with dotnet
+      run: dotnet build samples/BlazorWebAssembly/BlazorWebAssembly.csproj --configuration Release
+
+    - name: dotnet publish
+      run: dotnet publish samples/BlazorWebAssembly/BlazorWebAssembly.csproj -c Release -o ${{env.DOTNET_ROOT}}/myapp
+
+    - uses: tibor19/static-website-deploy@v1
+      with:
+        enabled-static-website: 'true'
+        folder: './samples/BlazorWebAssembly/bin/Release/netstandard2.1/wwwroot'
+        connection-string: ${{ secrets.AS_CONNECTION_STRING }}
