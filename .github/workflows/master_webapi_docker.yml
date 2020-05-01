@@ -2,7 +2,12 @@ name: Build and Push Docker Image CI
 
 on:
   push:
-    branches: [ master ]
+    branches:
+      - master
+    paths:
+    - '.github/workflows/master_webapi_docker.yml'
+    - 'samples/efcore5'
+    - 'samples/webapi'
 
   pull_request:
     branches: [ master ]
