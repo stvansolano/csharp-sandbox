@@ -6,8 +6,8 @@ on:
       - master
     paths:
     - '.github/workflows/master_webapi_docker.yml'
-    - 'samples/efcore5'
-    - 'samples/webapi'
+    - 'samples/efcore5/**'
+    - 'samples/webapi/**'
 
   pull_request:
     branches: [ master ]

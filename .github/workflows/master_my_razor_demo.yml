@@ -9,7 +9,7 @@ on:
       - master
     paths:
     - '.github/workflows/master_my_razor_demo.yml'
-    - 'templates/RazorWebApp'
+    - 'templates/RazorWebApp/**'
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
