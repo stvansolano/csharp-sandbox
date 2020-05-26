@@ -39,7 +39,7 @@ stages:
       displayName: Push the image
       inputs:
         containerRegistry: 'mydemos'
-        repository: 'samples/adventureworks-api-net5'
+        repository: 'samples/adventureworks-api-net3'
         command: 'buildAndPush'
         Dockerfile: '$(dockerfilePath)'
         buildContext: '.'
