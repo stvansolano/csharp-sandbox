@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
+using AdventureWorks.Data;
 
 namespace AdventureWorks.Api
 {
@@ -22,10 +23,17 @@ namespace AdventureWorks.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<AdventureworksContext>(opt =>
-            opt.UseSqlServer(
-                System.Environment.GetEnvironmentVariable("AdventureWorksDatabase") ??
-                Configuration.GetConnectionString("AdventureWorksDatabase")
-            ));
+            {
+                var connectionString = System.Environment.GetEnvironmentVariable("AdventureWorksDatabase") ??
+                    Configuration.GetConnectionString("AdventureWorksDatabase");
+
+                if (string.IsNullOrEmpty(connectionString))
+                {
+                    return;
+                }
+
+                opt.UseSqlServer(connectionString);
+            });
 
             services.AddControllers();
 

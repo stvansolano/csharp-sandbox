@@ -1,0 +1,23 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdventureWorks.Api", "AdventureWorks.Api.csproj", "{B658DE71-C040-4B51-A79C-31D93E268998}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdventureWorks.Data", "..\..\efcore3x\AdventureWorks.Data\AdventureWorks.Data.csproj", "{D6D459AA-3D32-4749-855C-CA6D6E8981F2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B658DE71-C040-4B51-A79C-31D93E268998}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B658DE71-C040-4B51-A79C-31D93E268998}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B658DE71-C040-4B51-A79C-31D93E268998}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B658DE71-C040-4B51-A79C-31D93E268998}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6D459AA-3D32-4749-855C-CA6D6E8981F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6D459AA-3D32-4749-855C-CA6D6E8981F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6D459AA-3D32-4749-855C-CA6D6E8981F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6D459AA-3D32-4749-855C-CA6D6E8981F2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
