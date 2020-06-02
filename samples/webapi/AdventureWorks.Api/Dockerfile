@@ -24,3 +24,4 @@ ENTRYPOINT ["dotnet", "AdventureWorks.Api.dll"]
 
 # docker build --pull --rm -f "samples/webapi/AdventureWorks.Api/Dockerfile" -t adventure-works-api:latest .
 # az acr build --image samples/mywebapi-netcore3x:latest --registry myDemos --file samples/webapi/AdventureWorks.Api/Dockerfile "."
+# ./ngrok http 5000 --host-header=localhost:5000
