@@ -1,12 +1,12 @@
-FROM mcr.microsoft.com/dotnet/core/aspnet:5.0 AS base
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.1 AS base
 WORKDIR /app
 EXPOSE 80
 EXPOSE 443
 
-FROM mcr.microsoft.com/dotnet/core/sdk:5.0 AS build
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build
 WORKDIR /src
 COPY ["samples/webapi/AdventureWorks.Api", "./webapi/AdventureWorks.Api"]
-COPY ["samples/efcore5/AdventureWorks.Data", "./efcore5/AdventureWorks.Data"] 
+COPY ["samples/efcore3x/AdventureWorks.Data", "./efcore3x/AdventureWorks.Data"] 
 
 RUN dotnet restore "webapi/AdventureWorks.Api/AdventureWorks.Api.csproj"
 COPY . .

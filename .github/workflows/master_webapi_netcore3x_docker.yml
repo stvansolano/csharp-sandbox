@@ -2,11 +2,11 @@ name: Build and Push Docker Image CI
 
 on:
   push:
-    branches-ignore:
-      - '***'
+    branches:
+      - 'master'
     paths:
     - '.github/workflows/master_webapi_docker.yml'
-    - 'samples/efcore5/**'
+    - 'samples/efcore3x/**'
     - 'samples/webapi/**'
 
   pull_request:
@@ -23,7 +23,7 @@ jobs:
     - name: Build the Docker image
       run: |
         docker login --username stvansolano --password ${{ secrets.DOCKERHUB_ACCESS_TOKEN }}
-        tag=stvansolano/adventure-works-api:$(date +%s)
+        tag=stvansolano/adventure-works-api-netcore3x:$(date +%s)
         docker build . --file samples/webapi/AdventureWorks.Api/Dockerfile --tag $tag
         echo $version
         docker push $tag
@@ -36,7 +36,7 @@ jobs:
         tenant: ${{ secrets.ACR_TENANT }}
         registry: ${{ secrets.ACR_REGISTRY }}
         repository: ${{ secrets.ACR_REPOSITORY }}
-        image: adventure-works-api-net5
+        image: adventure-works-api-net3
         folder: .
         dockerfile: samples/webapi/AdventureWorks.Api/Dockerfile
 
