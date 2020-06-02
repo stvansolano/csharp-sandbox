@@ -23,3 +23,21 @@ services:
       ACCEPT_EULA: "Y"
     ports: 
       - 1433:1433
+
+  adventure-works-netcore3.api:
+    build:
+      context: .
+      dockerfile: 'samples/webapi/AdventureWorks.Api/Dockerfile'    
+    ports: 
+      - 8081:8080
+    environment: 
+      ConnectionStrings_AdventureWorksDatabase: "data source=adventure-works.db;initial catalog=Adventureworks;persist security info=True;user id=sa;password=Password.123;MultipleActiveResultSets=True;App=EntityFramework"
+      AdventureWorksDatabase: "data source=adventure-works.db;initial catalog=Adventureworks;persist security info=True;user id=sa;password=Password.123;MultipleActiveResultSets=True;App=EntityFramework"
+      
+      #ASPNETCORE_URLS: http://+:80;http://*:3000;http://*:8080
+      #ASPNETCORE_HTTPS_PORT: 5501
+      #ASPNETCORE_Kestrel__Certificates__Default__Password: "@Aa123456"
+      #ASPNETCORE_Kestrel__Certificates__Default__Path: /https/aspnetapp.pfx
+    depends_on:
+      - adventure-works.db
+ 

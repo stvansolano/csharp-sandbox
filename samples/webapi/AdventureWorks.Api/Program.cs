@@ -22,7 +22,9 @@ namespace AdventureWorks.Api
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>()
-                              .UseUrls("http://+:8080;https://+:8000");
+                              .UseUrls("http://+:8080;");
+                              //.UseUrls("http://+:8080;https://+:8000");
+
                 });
     }
 }

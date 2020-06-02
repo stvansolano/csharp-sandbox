@@ -22,4 +22,5 @@ WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "AdventureWorks.Api.dll"]
 
-# docker build --rm -f "samples/webapi/AdventureWorks.Api/Dockerfile" -t adventure-works-api:latest .
+# docker build --pull --rm -f "samples/webapi/AdventureWorks.Api/Dockerfile" -t adventure-works-api:latest .
+# az acr build --image samples/mywebapi-netcore3x:latest --registry myDemos --file samples/webapi/AdventureWorks.Api/Dockerfile "."

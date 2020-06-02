@@ -7,6 +7,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
 using AdventureWorks.Data;
+using System;
 
 namespace AdventureWorks.Api
 {
@@ -29,8 +30,11 @@ namespace AdventureWorks.Api
 
                 if (string.IsNullOrEmpty(connectionString))
                 {
+                    Console.WriteLine("No connection string found. Switched to InMemory database...");
                     return;
                 }
+                    
+                Console.WriteLine("Configured SQL Server with connection string");
 
                 opt.UseSqlServer(connectionString);
             });
