@@ -15,7 +15,7 @@ WORKDIR "/src/webapi/AdventureWorks.Api"
 RUN dotnet build "AdventureWorks.Api.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "AdventureWorks.Api.csproj" -c Release -o /app/publish
+RUN dotnet publish "AdventureWorks.Api.csproj" -c Release -o /app/publish --framework netcoreapp3.1
 
 FROM base AS final
 WORKDIR /app
