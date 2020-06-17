@@ -5,7 +5,7 @@ on:
     branches:
       - 'master'
     paths:
-    - '.github/workflows/master_webapi_docker.yml'
+    - '.github/workflows/master_webapi_netcore3x_azure_cd.yml'
     - 'samples/efcore3x/**'
     - 'samples/webapi/**'
 
@@ -27,7 +27,7 @@ jobs:
         tenant: ${{ secrets.ACR_TENANT }}
         registry: ${{ secrets.ACR_REGISTRY }}
         repository: ${{ secrets.ACR_REPOSITORY }}
-        image: adventure-works-api-net3:latest
+        image: adventure-works-api-net3
         folder: .
         dockerfile: samples/webapi/AdventureWorks.Api/Dockerfile
 

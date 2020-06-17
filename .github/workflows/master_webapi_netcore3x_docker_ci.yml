@@ -5,7 +5,7 @@ on:
     branches:
       - 'master'
     paths:
-    - '.github/workflows/master_webapi_docker.yml'
+    - '.github/workflows/master_webapi_netcore3x_docker_ci.yml'
     - 'samples/efcore3x/**'
     - 'samples/webapi/**'
 
