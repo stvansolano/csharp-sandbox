@@ -9,6 +9,10 @@ Repo: https://github.com/stvansolano/csharp-sandbox/
 
 If you like or are using this project to learn or start your own solution, please give it a star. I appreciate it!
 
+## Status badge (GitHub actions)
+
+![Built and Pushed to Docker Registry - CI](https://github.com/stvansolano/csharp-sandbox/workflows/Build%20and%20Push%20Docker%20Image%20CI/badge.svg?branch=master)
+
 ## Getting started:
 
     git clone https://github.com/stvansolano/csharp-sandbox.git
