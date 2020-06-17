@@ -28,8 +28,10 @@ services:
     build:
       context: .
       dockerfile: 'samples/webapi/AdventureWorks.Api/Dockerfile'    
+    #image: stvansolano/adventure-works-api-netcore3x/1591135993
     ports: 
       - 8081:8080
+      - 80:80
     environment: 
       ConnectionStrings_AdventureWorksDatabase: "data source=adventure-works.db;initial catalog=Adventureworks;persist security info=True;user id=sa;password=Password.123;MultipleActiveResultSets=True;App=EntityFramework"
       AdventureWorksDatabase: "data source=adventure-works.db;initial catalog=Adventureworks;persist security info=True;user id=sa;password=Password.123;MultipleActiveResultSets=True;App=EntityFramework"
