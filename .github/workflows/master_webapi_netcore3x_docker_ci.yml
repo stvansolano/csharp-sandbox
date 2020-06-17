@@ -1,0 +1,27 @@
+name: Build and Push Docker Image CI
+
+on:
+  push:
+    branches:
+      - 'master'
+    paths:
+    - '.github/workflows/master_webapi_docker.yml'
+    - 'samples/efcore3x/**'
+    - 'samples/webapi/**'
+
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    
+    - uses: actions/checkout@v2
+    - name: Build the Docker image
+      run: |
+        docker login --username stvansolano --password ${{ secrets.DOCKERHUB_ACCESS_TOKEN }}
+        tag=stvansolano/adventure-works-api-netcore3x:$(date +%s)
+        docker build . --file samples/webapi/AdventureWorks.Api/Dockerfile --tag $tag
+        echo $version
+        docker push $tag

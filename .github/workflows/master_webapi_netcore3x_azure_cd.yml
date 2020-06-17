@@ -1,4 +1,4 @@
-name: Build and Push Docker Image CI
+name: Build and Push to Azure Container Registry
 
 on:
   push:
@@ -19,16 +19,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Build the Docker image
-      run: |
-        docker login --username stvansolano --password ${{ secrets.DOCKERHUB_ACCESS_TOKEN }}
-        tag=stvansolano/adventure-works-api-netcore3x:$(date +%s)
-        docker build . --file samples/webapi/AdventureWorks.Api/Dockerfile --tag $tag
-        echo $version
-        docker push $tag
-
-    - name: ACR build
+    - name: Azure Container Registry build & push
       uses: ams0/acr-task-github-action@v1
       with:
         service_principal: ${{ secrets.ACR_SERVICE_PRINCIPAL }}
@@ -36,11 +27,10 @@ jobs:
         tenant: ${{ secrets.ACR_TENANT }}
         registry: ${{ secrets.ACR_REGISTRY }}
         repository: ${{ secrets.ACR_REPOSITORY }}
-        image: adventure-works-api-net3
+        image: adventure-works-api-net3:latest
         folder: .
         dockerfile: samples/webapi/AdventureWorks.Api/Dockerfile
 
-# c
 # az ad sp create-for-rbac --name "myApp" --role contributor --scopes /subscriptions/{SUBSCRIPTION-ID}/resourceGroups/{RESOURCE-GROUP} --sdk-auth
 # az role assignment create --assignee <spID> --scope <resourceID of the ACR> --role "Contributor"
 
