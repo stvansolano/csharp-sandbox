@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace AdventureWorks.Api.Controllers
+namespace AdventureWorks.Api
 {
     [ApiController]
     [Route("api/[controller]")]

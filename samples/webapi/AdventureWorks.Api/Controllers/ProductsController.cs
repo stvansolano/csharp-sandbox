@@ -1,42 +1,116 @@
+﻿using System;
 using System.Collections.Generic;
-using AdventureWorks.Data;
-using AdventureWorks.Data.Models;
-using Microsoft.AspNetCore.Mvc;
 using System.Linq;
-using System.Text.Json.Serialization;
-using System.Text.Json;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 
-namespace AdventureWorks.Api
+using AdventureWorks.Data;
+using Product = AdventureWorks.Data.Models.Product;
+
+namespace AdventureWorks.Api.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class ProductsController : ControllerBase
-    {
-        public AdventureworksContext Context { get; }
+	[Route("api/[controller]")]
+	[ApiController]
+	public class ProductsController : ControllerBase
+	{
+		public AdventureworksContext Context { get; }
 
-        public ProductsController(AdventureworksContext context)
-        {
-            Context = context;
-        }
+		public ProductsController(AdventureworksContext context)
+		{
+			Context = context;
+		}
 
-        // GET: api/values
-        [HttpGet]
-        public IEnumerable<object> Get()
-        {
-            //return Context.Product.Select(p => new {
-            //    Name = p.Name,
-            //    Color = p.Color,
-            //    ListPrice = p.ListPrice
-            //}).ToArray();
+		// GET: api/values
+		[HttpGet]
+		public IActionResult Get()
+		{
+			return Ok(
+					  Context.Product.Select(item => new {
+						 Id = item.ProductId,
+						 item.Name,
+						 item.ListPrice,
+						 item.Color,
+						 item.ModifiedDate
+					 }).ToArray());
+		}
 
-            return JsonSerializer.Deserialize<object[]>(JSON);
-        }
+		// GET api/[controller]/5
+		[HttpGet("{id}")]
+		public IActionResult Get(int id)
+		{
+			var match = Context.Product.FirstOrDefault(model => model.ProductId == id);
+			if (match == null)
+			{
+				return NotFound();
+			}
+			return Ok( match);
+		}
 
-        const string JSON = @"[
-            { ""name"": ""HL Road Frame - Red, 58"", ""color"": ""Red"",""listPrice"": 1431.5 },
-            { ""name"": ""Sport-100 Helmet, Red"",""color"": ""Red"",""listPrice"": 34.99 },
-			{ ""name"": ""Sport-100 Helmet, Black"", ""color"": ""Black"",""listPrice"": 34.99 },
-            { ""name"": ""Mountain Bike Socks, M"",""color"": ""White"",""listPrice"": 9.5 }
-		]";
-    }
+		// POST api/values
+		[HttpPost]
+		public IActionResult Post([FromBody]Product value)
+		{
+			if (!ModelState.IsValid)
+			{
+				return BadRequest();
+			}
+			var model = Context.Product.Find(value.ProductId);
+			if (model == null)
+			{
+				return NotFound();
+			}
+			model.ListPrice = value.ListPrice;
+			model.ModifiedDate = DateTime.Now;
+			model.Color = value.Color;
+			model.ProductModel = value.ProductModel;
+			model.ProductNumber = value.ProductNumber;
+
+			model.Size = value.Size;
+			model.StandardCost = value.StandardCost;
+			model.Weight = value.Weight;
+
+			Context.Product.Add(model);
+
+			Context.SaveChanges();
+
+			return Ok();
+		}
+
+		// PUT api/[controller]/5
+		[HttpPut("{id}")]
+		public async Task<IActionResult> Put(int id, [FromBody]Product value)
+		{
+			if (!ModelState.IsValid)
+			{
+				return BadRequest();
+			}
+			var model = Context.Product.Find(id);
+			if (model == null)
+			{
+				return NotFound();
+			}
+			model.ListPrice = value.ListPrice;
+			model.ModifiedDate = DateTime.Now;
+			model.Color = value.Color;
+			model.ProductModel = value.ProductModel;
+			model.ProductNumber = value.ProductNumber;
+
+			model.Size = value.Size;
+			model.StandardCost = value.StandardCost;
+			model.Weight = value.Weight;
+
+			Context.Product.Update(model);
+
+			await Context.SaveChangesAsync();
+
+			return Ok();
+		}
+
+		// DELETE api/[controller]/5
+		[HttpDelete("{id}")]
+		public IActionResult Delete(int id)
+		{
+			return base.Unauthorized();
+		}
+	}
 }
