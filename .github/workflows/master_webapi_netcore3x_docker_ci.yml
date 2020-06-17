@@ -21,7 +21,10 @@ jobs:
     - name: Build the Docker image
       run: |
         docker login --username stvansolano --password ${{ secrets.DOCKERHUB_ACCESS_TOKEN }}
-        tag=stvansolano/adventure-works-api-netcore3x:$(date +%s)
-        docker build . --file samples/webapi/AdventureWorks.Api/Dockerfile --tag $tag
+        image=stvansolano/adventure-works-api-netcore3x:
+        tag=$(date +%s)
+        docker build . --file samples/webapi/AdventureWorks.Api/Dockerfile --tag $image:$tag
         echo $version
-        docker push $tag
+        docker push $image:$tag
+        docker build . --file samples/webapi/AdventureWorks.Api/Dockerfile --tag $image:latest
+        docker push $image:latest
