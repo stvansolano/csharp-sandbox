@@ -19,13 +19,12 @@ namespace AdventureWorks.Api
             Context = context;
         }
 
-        // GET: api/values
         [HttpGet]
-        public IEnumerable<object> Get()
+		public IActionResult Get(bool? useCached = true)
 		{
-             return JsonSerializer.Deserialize<object[]>(JSON);
-
-            /*
+            if (useCached == true) {
+                return Ok(JsonSerializer.Deserialize<object[]>(JSON));
+            }
 			return Ok(Context.Customer.Select(c => new {
 				c.FirstName,
 				c.MiddleName,
@@ -35,7 +34,7 @@ namespace AdventureWorks.Api
 				c.CompanyName,
 				c.Title,
 				c.Phone
-			}).ToArray());*/
+			}).ToArray());
 		}
 
         const string JSON = @"[
